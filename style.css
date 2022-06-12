@@ -1,0 +1,28 @@
+.cta-links {
+    background-color: #232323;
+    /* width: calc(300px + 0px); */
+    width: 100%;
+}
+
+.cta-links .cta-link {
+    align-items: center;
+    border-bottom: solid 1px;
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+}
+
+.cta-links .cta-link .cta-link-icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 60px;
+    padding: 0 .5em;
+    width: 55%;
+}
+
+.cta-links .cta-link .cta-link-btn {
+    padding: 0;
+    text-align: center;
+    width: 45%;
+}
