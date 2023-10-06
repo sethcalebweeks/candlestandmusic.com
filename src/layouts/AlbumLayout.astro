@@ -1,0 +1,24 @@
+---
+import { slide } from "astro:transitions";
+import Layout from './Layout.astro';
+import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
+
+interface Props {
+  albumName: string;
+	albumCover: any;
+  tracks: string[];
+}
+
+const { albumName, albumCover, tracks } = Astro.props;
+---
+
+<Layout title={albumName}>
+	<main class="flex min-h-0 flex-1 flex-wrap">
+    <img src={albumCover.src} alt={albumName} class="max-h-full min-h-0 min-w-0" transition:name="mercifulAndMighty" />
+    <ol class="block p-4 list-decimal"> 
+      {tracks.map((track, i) => (
+        <li class="mx-8 my-2 px-2" transition:animate={slide({duration: i * 50 + 500})}>{track}</li>
+      ))}
+    </ol>
+	</main>
+</Layout>

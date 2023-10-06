@@ -6,17 +6,17 @@ import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 ---
 
 <Layout>
-	<main>
-    <h1 class="block text-center text-4xl">Discography</h1>
-    <div class="w-full h-full grid grid-cols-3 gap-4 p-4">
-      <a href="/noahsart">
-        <img src={noahsArt.src} alt="Noah's Art" class="" />
+	<main class="p-4">
+    <!-- <h1 class="block text-center text-4xl">Discography</h1> -->
+    <div class="w-full h-full grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
+      <a href="/merciful&mighty">
+        <img src={mercifulAndMighty.src} class="w-full" alt="Merciful & Mighty" transition:name="mercifulAndMighty" />
       </a>
       <a href="/restore">
-        <img src={restore.src} alt="Restore" class="" />
+        <img src={restore.src} class="w-full" alt="Restore" transition:name="restore" />
       </a>
-      <a href="/merciful&mighty">
-        <img src={mercifulAndMighty.src} alt="Merciful & Mighty" />
+      <a href="/noahsart">
+        <img src={noahsArt.src} class="w-full" alt="Noah's Art" transition:name="noahsArt" />
       </a>
     </div>
 	</main>
