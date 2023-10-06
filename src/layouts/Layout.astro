@@ -21,9 +21,9 @@ const { title } = Astro.props;
 		<title>{(title ? `${title} | ` : "") + "Candlestand Music"}</title>
 	</head>
 	<body class="flex flex-col font-serif bg-gray-400">
-    <nav class="block w-full p-4 flex justify-between bg-gray-700 text-white font-semibold">
+    <nav class="block w-full p-4 flex flex-wrap justify-center bg-gray-700 text-white font-semibold">
       <h2 class="text-2xl"><a href="/">Candlestand Music</a></h2>
-      <ul class="flex items-center">
+      <ul class="flex items-center mx-auto sm:mr-0">
         <li class="px-4"><a href="/about">About</a></li>
         <li class="px-4">Contact</li>
       </ul>
