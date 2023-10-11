@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('tracks')).map(entry => {
+    const [album, tracks] = entry.slug
+      .replace("_and_", "&")
+      .replace(/\d{2}_/, "")
+      .split("/")
+
+    return {params: { album, tracks }, props: { entry }}
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout>
+  <main class="prose max-w-4xl mx-auto">
+    <h1>{entry.data.title}</h1>
+    <Content />
+  </main>
+</Layout>

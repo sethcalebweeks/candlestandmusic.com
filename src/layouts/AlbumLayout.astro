@@ -1,23 +1,30 @@
 ---
+import { getCollection } from 'astro:content';
 import { slide } from "astro:transitions";
 import Layout from './Layout.astro';
-import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 
 interface Props {
-  albumName: string;
-	albumCover: any;
-  tracks: string[];
+  slug: string;
+  name: string;
+	cover: any;
 }
+const { slug, name, cover } = Astro.props;
 
-const { albumName, albumCover, tracks } = Astro.props;
+const tracks = (await getCollection('tracks', ({id}) => {
+    return id.startsWith(slug.replace("&", "_and_"))
+  })).map(({slug, ...rest}) => ({
+    ...rest,
+    slug: slug.replace("_and_", "&").replace(/\d{2}_/, "")
+  }))
+
 ---
 
-<Layout title={albumName}>
+<Layout title={name}>
 	<main class="flex min-h-0 flex-1 flex-wrap">
-    <img src={albumCover.src} alt={albumName} class="max-h-full min-h-0 min-w-0" transition:name="mercifulAndMighty" />
+    <img src={cover.src} alt={name} class="max-h-full min-h-0 min-w-0" transition:name={cover.src} />
     <ol class="block p-4 list-decimal"> 
-      {tracks.map((track, i) => (
-        <li class="mx-8 my-2 px-2" transition:animate={slide({duration: i * 50 + 500})}>{track}</li>
+      {tracks.map(({data: {title}, slug}, i) => (
+        <li class="mx-8 my-2 px-2" transition:animate={slide({duration: i * 50 + 500})}><a href={slug}>{title}</a></li>
       ))}
     </ol>
 	</main>

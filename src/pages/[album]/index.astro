@@ -1,0 +1,44 @@
+---
+import AlbumLayout from '../../layouts/AlbumLayout.astro';
+import mercifulAndMighty from '../../images/merciful-&-mighty.jpg';
+import restore from '../../images/restore.jpg';
+import noahsArt from '../../images/noahs-art.jpg';
+
+interface Props {
+  slug: string;
+  name: string;
+  cover: object;
+}
+
+export function getStaticPaths() {
+  return [
+    { 
+      params: {album: 'merciful&mighty'},
+      props: {
+        slug: 'merciful&mighty',
+        name: 'Merciful & Mighty',
+        cover: mercifulAndMighty,
+      } 
+    },
+    { 
+      params: {album: 'restore'},
+      props: {
+        slug: 'restore',
+        name: 'Restore',
+        cover: restore,
+      } 
+    },
+    { 
+      params: {album: 'noahsart'},
+      props: {
+        slug: 'noahsart',
+        name: "Noah's Art",
+        cover: noahsArt,
+      } 
+    },
+  ]
+}
+---
+
+<AlbumLayout {...Astro.props} />
+

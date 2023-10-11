@@ -7,20 +7,16 @@ import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 
 <Layout>
 	<main class="p-4">
-    <!-- <h1 class="block text-center text-4xl">Discography</h1> -->
     <div class="w-full h-full grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
       <a href="/merciful&mighty">
-        <img src={mercifulAndMighty.src} class="w-full" alt="Merciful & Mighty" transition:name="mercifulAndMighty" />
+        <img src={mercifulAndMighty.src} class="w-full" alt="Merciful & Mighty" transition:name={mercifulAndMighty.src} />
       </a>
       <a href="/restore">
-        <img src={restore.src} class="w-full" alt="Restore" transition:name="restore" />
+        <img src={restore.src} class="w-full" alt="Restore" transition:name={restore.src} />
       </a>
       <a href="/noahsart">
-        <img src={noahsArt.src} class="w-full" alt="Noah's Art" transition:name="noahsArt" />
+        <img src={noahsArt.src} class="w-full" alt="Noah's Art" transition:name={noahsArt.src} />
       </a>
     </div>
 	</main>
 </Layout>
-
-<style>
-</style>
