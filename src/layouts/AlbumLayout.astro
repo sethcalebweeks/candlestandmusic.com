@@ -20,9 +20,9 @@ const tracks = (await getCollection('tracks', ({id}) => {
 ---
 
 <Layout title={name}>
-	<main class="flex min-h-0 flex-1 flex-wrap">
-    <img src={cover.src} alt={name} class="max-h-full min-h-0 min-w-0" transition:name={cover.src} />
-    <ol class="block p-4 list-decimal"> 
+	<main class="flex min-h-0 flex-col md:flex-row flex-1">
+    <img src={cover.src} alt={name} class="object-contain flex-shrink" transition:name={cover.src} />
+    <ol class="block p-4 list-decimal flex-grow"> 
       {tracks.map(({data: {title}, slug}, i) => (
         <li class="mx-8 my-2 px-2" transition:animate={slide({duration: i * 50 + 500})}><a href={slug}>{title}</a></li>
       ))}
