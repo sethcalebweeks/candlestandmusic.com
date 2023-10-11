@@ -14,7 +14,7 @@ const tracks = (await getCollection('tracks', ({id}) => {
     return id.startsWith(slug.replace("&", "_and_"))
   })).map(({slug, ...rest}) => ({
     ...rest,
-    slug: slug.replace("_and_", "&").replace(/\d{2}_/, "")
+    slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
   }))
 
 ---
