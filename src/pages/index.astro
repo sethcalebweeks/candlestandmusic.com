@@ -1,11 +1,20 @@
 ---
+import { Icon } from 'astro-icon';
+
+import albums from '../albums.json';
 import Layout from '../layouts/Layout.astro';
-import noahsart from '../images/noahs-art.jpg';
 import restore from '../images/restore.jpg';
+import noahsart from '../images/noahs-art.jpg';
+import AlbumTile from '../components/AlbumTile.astro';
 import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
-import AlbumTile from '../components/AlbumTile.astro';
-import albums from '../albums.json';
+
+const ctaButtons = [
+  {icon: 'simple-icons:spotify', text: 'Listen on Spotify'},
+  {icon: 'simple-icons:applemusic', text: 'Listen on Apple Music'},
+  {icon: 'simple-icons:youtube', text: 'Listen on YouTube'},
+  {icon: 'simple-icons:amazon', text: 'Listen on Amazon Music'},
+]
 
 const albumCovers: {[slug: string]: ImageMetadata} = {
   restore,
@@ -22,15 +31,18 @@ const [_, ...pastAlbums] = albums;
         <img src={mercifulAndMighty.src} class="max-h-full" alt="Merciful & Mighty" transition:name={mercifulAndMighty.src} />
       </a>
       <div class="content-center text-white flex-1 flex flex-col justify-center items-center text-center">
-        <h2 class="text-4xl p-4">Merciful & Mighty</h2>
         <h2 class="text-2xl p-4">Listen now to the latest album!</h2>
-        <button class="border-2 p-2 m-2 border-white">Listen on Spotify</button>
-        <button class="border-2 p-2 m-2 border-white">Listen on Apple Music</button>
-        <button class="border-2 p-2 m-2 border-white">Listen on YouTube</button>
-        <button class="border-2 p-2 m-2 border-white">Listen on Amazon Music</button>
+        <div class="inline-grid columns-1">
+          {ctaButtons.map(({icon, text}) => (
+            <button class="border-2 p-2 m-2 border-white inline-flex items-center justify-center">
+              <Icon name={icon} class="h-6 w-6 inline-block mr-2" />
+              {text}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
-    <div class="w-full h-full m-auto p-2 sm:p-10 max-w-5xl grid grid-cols-2 gap-2 py-2 sm:gap-10 sm:py-10">
+    <div class="w-full h-full m-auto p-6 sm:p-10 max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-10">
       {pastAlbums.map(({slug, name, ...rest}) => (
         <AlbumTile {...rest}>
           <a href={`/${slug}`}>

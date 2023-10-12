@@ -1,24 +1,21 @@
 ---
-import spotify from '../images/spotify.svg';
-import appleMusic from '../images/apple-music.svg';
-import youtube from '../images/youtube.svg';
-import amazon from '../images/amazon.svg';
+import { Icon } from 'astro-icon';
 
-const links = {
-  spotify,
-  appleMusic,
-  youtube,
-  amazon
-}
+const links = [
+  'spotify',
+  'applemusic',
+  'youtube',
+  'amazon',
+]
 ---
 
 <div>
   <slot />
   <ul class="flex flex-row justify-center">
-    {Object.entries(links).map(([alt, image]) => (
-      <li>
-        <a href={Astro.props[alt]}>
-          <img src={image.src} {alt} class="h-6 sm:h-8 m-1 sm:m-2 opacity-60 hover:opacity-100 transition-all" />
+    {links.map(link => (
+      <li class="my-1">
+        <a href={Astro.props[link]}>
+          <Icon name={`simple-icons:${link}`} class="h-8 m-2 opacity-60 hover:opacity-100 transition-all" />
         </a>
       </li>
     ))}
