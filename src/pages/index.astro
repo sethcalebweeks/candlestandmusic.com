@@ -3,20 +3,25 @@ import Layout from '../layouts/Layout.astro';
 import noahsart from '../images/noahs-art.jpg';
 import restore from '../images/restore.jpg';
 import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
+import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
 import AlbumTile from '../components/AlbumTile.astro';
 import albums from '../albums.json';
 
 const albumCovers: {[slug: string]: ImageMetadata} = {
-  "merciful&mighty": mercifulAndMighty,
   restore,
   noahsart,
 }
+
+const [_, ...pastAlbums] = albums;
 ---
 
 <Layout>
-	<main class="p-4">
-    <div class="w-full h-full grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
-      {albums.map(({slug, name, ...rest}) => (
+	<main class="overflow-x-hidden">
+    <div class="h-[100vh] p-10 pt-[6rem] bg-cover" style={`background-image:url("${blurredMercifulAndMighty.src}");`}>
+      <img src={mercifulAndMighty.src} class="max-h-full" alt="Merciful & Mighty" />
+    </div>
+    <div class="w-full h-full m-auto p-2 sm:p-10 max-w-5xl grid grid-cols-2 gap-2 py-2 sm:gap-10 sm:py-10">
+      {pastAlbums.map(({slug, name, ...rest}) => (
         <AlbumTile {...rest}>
           <a href={`/${slug}`}>
             <img src={albumCovers[slug].src} class="w-full hover:scale-[1.02] transition-all" alt={name} transition:name={albumCovers[slug].src} />

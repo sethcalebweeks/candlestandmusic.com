@@ -18,7 +18,7 @@ const links = {
     {Object.entries(links).map(([alt, image]) => (
       <li>
         <a href={Astro.props[alt]}>
-          <img src={image.src} {alt} class="h-8 m-2 opacity-60 hover:opacity-100 transition-all" />
+          <img src={image.src} {alt} class="h-6 sm:h-8 m-1 sm:m-2 opacity-60 hover:opacity-100 transition-all" />
         </a>
       </li>
     ))}
