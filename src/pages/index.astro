@@ -17,8 +17,18 @@ const [_, ...pastAlbums] = albums;
 
 <Layout>
 	<main class="overflow-x-hidden">
-    <div class="h-[100vh] p-10 pt-[6rem] bg-cover" style={`background-image:url("${blurredMercifulAndMighty.src}");`}>
-      <img src={mercifulAndMighty.src} class="max-h-full" alt="Merciful & Mighty" />
+    <div class="h-[100vh] p-10 pt-[6rem] bg-cover flex flex-row" style={`background-image:url("${blurredMercifulAndMighty.src}");`}>
+      <a href="/merciful&mighty">
+        <img src={mercifulAndMighty.src} class="max-h-full" alt="Merciful & Mighty" transition:name={mercifulAndMighty.src} />
+      </a>
+      <div class="content-center text-white flex-1 flex flex-col justify-center items-center">
+        <h2 class="text-4xl p-4">Merciful & Mighty</h2>
+        <h2 class="text-2xl p-4">Listen now to the latest album!</h2>
+        <button class="border-2 p-2 m-2 border-white">Listen on Spotify</button>
+        <button class="border-2 p-2 m-2 border-white">Listen on Apple Music</button>
+        <button class="border-2 p-2 m-2 border-white">Listen on YouTube</button>
+        <button class="border-2 p-2 m-2 border-white">Listen on Amazon Music</button>
+      </div>
     </div>
     <div class="w-full h-full m-auto p-2 sm:p-10 max-w-5xl grid grid-cols-2 gap-2 py-2 sm:gap-10 sm:py-10">
       {pastAlbums.map(({slug, name, ...rest}) => (
