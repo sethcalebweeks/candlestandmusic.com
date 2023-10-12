@@ -1,25 +1,24 @@
 ---
 import spotify from '../images/spotify.svg';
 import appleMusic from '../images/apple-music.svg';
-import youTube from '../images/youtube.svg';
+import youtube from '../images/youtube.svg';
 import amazon from '../images/amazon.svg';
 
-const links = [
-  {image: spotify, alt: 'spotify'},
-  {image: appleMusic, alt: 'apple music'},
-  {image: youTube, alt: 'youtube'},
-  {image: amazon, alt: 'amazon'},
-]
-
+const links = {
+  spotify,
+  appleMusic,
+  youtube,
+  amazon
+}
 ---
 
 <div>
   <slot />
   <ul class="flex flex-row justify-center">
-    {links.map(({image, alt}) => (
+    {Object.entries(links).map(([alt, image]) => (
       <li>
-        <a href="#">
-          <img src={image.src} alt={alt} class="h-8 m-2 opacity-60 hover:opacity-100 transition-all" />
+        <a href={Astro.props[alt]}>
+          <img src={image.src} {alt} class="h-8 m-2 opacity-60 hover:opacity-100 transition-all" />
         </a>
       </li>
     ))}

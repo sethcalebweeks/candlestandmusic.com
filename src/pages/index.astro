@@ -1,29 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import noahsArt from '../images/noahs-art.jpg';
+import noahsart from '../images/noahs-art.jpg';
 import restore from '../images/restore.jpg';
 import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 import AlbumTile from '../components/AlbumTile.astro';
+import albums from '../albums.json';
+
+const albumCovers: {[slug: string]: ImageMetadata} = {
+  "merciful&mighty": mercifulAndMighty,
+  restore,
+  noahsart,
+}
 ---
 
 <Layout>
 	<main class="p-4">
     <div class="w-full h-full grid grid-cols-1 gap-4 py-4 md:grid-cols-3">
-      <AlbumTile>
-        <a href="/merciful&mighty">
-          <img src={mercifulAndMighty.src} class="w-full" alt="Merciful & Mighty" transition:name={mercifulAndMighty.src} />
-        </a>
-      </AlbumTile>
-      <AlbumTile>
-        <a href="/restore">
-          <img src={restore.src} class="w-full" alt="Restore" transition:name={restore.src} />
-        </a>
-      </AlbumTile>
-      <AlbumTile>
-        <a href="/noahsart">
-          <img src={noahsArt.src} class="w-full" alt="Noah's Art" transition:name={noahsArt.src} />
-        </a>
-      </AlbumTile>
+      {albums.map(({slug, name, ...rest}) => (
+        <AlbumTile {...rest}>
+          <a href={`/${slug}`}>
+            <img src={albumCovers[slug].src} class="w-full hover:scale-[1.02] transition-all" alt={name} transition:name={albumCovers[slug].src} />
+          </a>
+        </AlbumTile>
+      ))}
     </div>
 	</main>
 </Layout>
