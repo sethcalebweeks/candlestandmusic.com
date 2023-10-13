@@ -3,9 +3,10 @@ import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
 	title?: string;
+  transparentNav?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, transparentNav } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,7 +21,7 @@ const { title } = Astro.props;
 		<title>{(title ? `${title} | ` : "") + "Candlestand Music"}</title>
 	</head>
 	<body class="font-serif overflow-x-hidden bg-gray-300">
-    <nav class="fixed top-0 z-10 h-16 block w-full backdrop-blur-lg flex flex-wrap px-4 content-center justify-center text-white">
+    <nav class:list={["fixed top-0 z-10 h-16 block w-full flex flex-wrap px-4 content-center justify-center text-white", {"backdrop-blur-lg": transparentNav}]}>
       <h2 class="text-2xl"><a href="/">Candlestand Music</a></h2>
       <ul class="flex items-center mx-auto sm:mr-0">
         <li class="px-4"><a href="/about">About</a></li>

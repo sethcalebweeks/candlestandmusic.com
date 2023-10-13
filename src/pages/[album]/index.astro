@@ -1,9 +1,13 @@
 ---
-import AlbumLayout from '../../layouts/AlbumLayout.astro';
-import mercifulAndMighty from '../../images/merciful-&-mighty.jpg';
+import { getCollection } from 'astro:content';
+
+import { slide } from '../../scripts/slide.ts';
+import Layout from '../../layouts/Layout.astro';
+import albums from '../../albums.json';
 import restore from '../../images/restore.jpg';
 import noahsart from '../../images/noahs-art.jpg';
-import albums from '../../albums.json';
+import mercifulAndMighty from '../../images/merciful-&-mighty.jpg';
+import blurredMercifulAndMighty from '../../images/blurred-merciful-and-mighty.jpeg';
 
 interface Props {
   slug: string;
@@ -22,7 +26,24 @@ export function getStaticPaths() {
     props: {cover: albumCovers[album.slug], ...album}
   }))
 }
+
+const { slug, name, cover } = Astro.props;
+
+const tracks = (await getCollection('tracks', ({id}) => {
+    return id.startsWith(slug.replace("&", "_and_"))
+  })).map(({slug, ...rest}) => ({
+    ...rest,
+    slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
+  }))
 ---
 
-<AlbumLayout {...Astro.props} />
-
+<Layout title={name}>
+	<main class="flex min-h-0 flex-col md:flex-row flex-1 pt-16 h-full bg-cover" style={`background-image:url("${blurredMercifulAndMighty.src}");`}>
+    <img src={cover.src} alt={name} class="object-contain flex-shrink" transition:name={cover.src} />
+    <ol class="block p-4 list-decimal flex-grow"> 
+      {tracks.map(({data: {title}, slug}, i) => (
+        <li class="mx-8 my-2 px-2" transition:animate={slide(i * 50 + 500)}><a href={slug}>{title}</a></li>
+      ))}
+    </ol>
+	</main>
+</Layout>
