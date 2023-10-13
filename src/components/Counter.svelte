@@ -1,7 +1,5 @@
-<script>
-  let count = 0;
+<script lang="ts">
+  import { currentSong } from '../scripts/audioStore';
 </script>
 
-<button on:click={() => count++}>
-  Count: {count}
-</button>
+<span>{$currentSong}</span>

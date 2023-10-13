@@ -1,9 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AudioPlayer from '../components/AudioPlayer.svelte';
+
+const src = [
+		'https://sveltejs.github.io/assets/music/strauss.mp3',
+		'https://sveltejs.github.io/assets/music/holst.mp3',
+		'https://sveltejs.github.io/assets/music/satie.mp3',
+		'https://sveltejs.github.io/assets/music/beethoven.mp3',
+		'https://sveltejs.github.io/assets/music/mozart.mp3'
+	]
+// import Counter from '../components/Counter.svelte';
 ---
 
 <Layout>
 	<main class="pt-[6rem] 2xl:pt-[8rem]">
     <h1 class="block text-center text-4xl">About</h1>
+    <AudioPlayer client:load {src} />      
 	</main>
 </Layout>
