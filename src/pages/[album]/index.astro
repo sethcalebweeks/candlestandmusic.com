@@ -39,12 +39,12 @@ const tracks = (await getCollection('tracks', ({id}) => {
 ---
 
 <Layout title={name}>
-	<main class="flex min-h-0 flex-col md:flex-row pt-16 2xl:pt-[5rem] h-full w-full overflow-auto">
-    <div class="p-4 flex flex-col flex-1 align-middle">
-      <img src={cover.src} alt={name} class="object-contain flex-shrink max-h-[70vh]" transition:name={cover.src} />
+	<main class="flex min-h-0 flex-col md:flex-row pb-4 pt-16 2xl:pt-[5rem] h-full w-full">
+    <div class="p-4 flex flex-col flex-1 align-middle max-h-[70vh]">
+      <img src={cover.src} alt={name} class="object-contain flex-shrink shadow-lg shadow-black"  /> <!--transition:name={cover.src} -->
       <Links {...rest} />
     </div>
-    <div class="p-4 flex-1 min-w-[24rem] w-full sm:overflow-auto">
+    <div class="p-4 flex-1 min-w-[24rem] w-full">
       <ol class="block"> 
         {tracks.map(({data: {title}, slug}) => (
           <li class="my-2 p-2 bg-black bg-opacity-50 flex rounded text-white">
