@@ -1,0 +1,28 @@
+---
+import { Icon } from 'astro-icon';
+
+interface Props {
+  spotify?: string;
+  applemusic?: string;
+  youtube?: string;
+  amazon?: string;
+  download?: string;
+}
+
+const links = [
+  'spotify',
+  'applemusic',
+  'youtube',
+  'amazon',
+] as const;
+---
+
+<ul class="flex flex-row justify-center my-2 sm:my-4">
+  {links.map(link => (
+    <li>
+      <a href={Astro.props[link]}>
+        <Icon name={`simple-icons:${link}`} class="h-8 m-2 opacity-60 hover:opacity-100 transition-all" />
+      </a>
+    </li>
+  ))}
+</ul>

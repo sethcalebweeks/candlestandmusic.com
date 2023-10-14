@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon';
 import PlaySong from '../../components/PlaySong.svelte';
+import Links from '../../components/Links.astro';
 
 import Layout from '../../layouts/Layout.astro';
 import albums from '../../albums.json';
@@ -27,7 +28,7 @@ export function getStaticPaths() {
   }))
 }
 
-const { slug, name, cover } = Astro.props;
+const { slug, name, cover, ...rest } = Astro.props;
 
 const tracks = (await getCollection('tracks', ({id}) => {
     return id.startsWith(slug.replace("&", "_and_"))
@@ -38,24 +39,23 @@ const tracks = (await getCollection('tracks', ({id}) => {
 ---
 
 <Layout title={name}>
-	<main class="flex min-h-0 flex-col md:flex-row flex-1 pt-16 2xl:pt-[5rem] h-full overflow-auto">
-    <img src={cover.src} alt={name} class="object-contain flex-shrink" transition:name={cover.src} />
-    <ol class="block p-4 flex-grow sm:overflow-auto"> 
-      {tracks.map(({data: {title}, slug}) => (
-        <li class="my-2 p-2 track flex rounded text-white">
-          <PlaySong song={slug} client:load>
-            <Icon name="ic:baseline-play-arrow" class="h-6 w-6" />
-          </PlaySong>
-          <span class="flex-grow px-2">{title}</span>
-          <a href={slug} class="px-2">Lyrics</a>
-        </li>
-      ))}
-    </ol>
+	<main class="flex min-h-0 flex-col md:flex-row pt-16 2xl:pt-[5rem] h-full w-full overflow-auto">
+    <div class="p-4 flex flex-col flex-1 align-middle">
+      <img src={cover.src} alt={name} class="object-contain flex-shrink max-h-[70vh]" transition:name={cover.src} />
+      <Links {...rest} />
+    </div>
+    <div class="p-4 flex-1 min-w-[24rem] w-full sm:overflow-auto">
+      <ol class="block"> 
+        {tracks.map(({data: {title}, slug}) => (
+          <li class="my-2 p-2 bg-black bg-opacity-50 flex rounded text-white">
+            <PlaySong song={slug} client:load>
+              <Icon name="ic:baseline-play-arrow" class="h-6 w-6" />
+            </PlaySong>
+            <span class="flex-grow px-2">{title}</span>
+            <a href={slug} class="px-2">Lyrics</a>
+          </li>
+        ))}
+      </ol>
+    </div>
 	</main>
 </Layout>
-
-<style>
-  .track {
-    background-color: rgba(20, 20, 20, 0.7);
-  }
-</style>
