@@ -7,7 +7,6 @@ import restore from '../images/restore.jpg';
 import noahsart from '../images/noahs-art.jpg';
 import AlbumTile from '../components/AlbumTile.astro';
 import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
-import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
 
 const ctaButtons = [
   {icon: 'simple-icons:spotify', text: 'Listen on Spotify'},
@@ -24,9 +23,9 @@ const albumCovers: {[slug: string]: ImageMetadata} = {
 const [_, ...pastAlbums] = albums;
 ---
 
-<Layout  transparentNav>
+<Layout>
 	<main class="overflow-x-hidden">
-    <div class="h-auto sm:h-[100vh] p-10 pt-[6rem] bg-cover flex flex-col sm:flex-row" style={`background-image:url("${blurredMercifulAndMighty.src}");`}>
+    <div class="h-auto sm:h-[100vh] p-10 pt-[6rem] 2xl:pt-[8rem] flex flex-col sm:flex-row">
       <a href="/merciful&mighty">
         <img src={mercifulAndMighty.src} class="max-h-full" alt="Merciful & Mighty" transition:name={mercifulAndMighty.src} />
       </a>
@@ -42,7 +41,7 @@ const [_, ...pastAlbums] = albums;
         </div>
       </div>
     </div>
-    <div class="w-full h-full m-auto p-6 sm:p-10 max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-10">
+    <div class="w-full h-full m-auto p-6 sm:p-10 max-w-6xl grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-10">
       {pastAlbums.map(({slug, name, ...rest}) => (
         <AlbumTile {...rest}>
           <a href={`/${slug}`}>
