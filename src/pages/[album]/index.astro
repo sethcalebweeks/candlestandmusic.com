@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon';
+import PlaySong from '../../components/PlaySong.svelte';
 
 import Layout from '../../layouts/Layout.astro';
 import albums from '../../albums.json';
@@ -42,7 +43,9 @@ const tracks = (await getCollection('tracks', ({id}) => {
     <ol class="block p-4 flex-grow sm:overflow-auto"> 
       {tracks.map(({data: {title}, slug}) => (
         <li class="my-2 p-2 track flex rounded text-white">
-          <Icon name="ic:baseline-play-arrow" class="h-6 w-6 opacity-0" />
+          <PlaySong song={slug} client:load>
+            <Icon name="ic:baseline-play-arrow" class="h-6 w-6" />
+          </PlaySong>
           <span class="flex-grow px-2">{title}</span>
           <a href={slug} class="px-2">Lyrics</a>
         </li>
@@ -54,8 +57,5 @@ const tracks = (await getCollection('tracks', ({id}) => {
 <style>
   .track {
     background-color: rgba(20, 20, 20, 0.7);
-  }
-  .track:hover > [astro-icon] {
-    opacity: 1;
   }
 </style>
