@@ -1,16 +1,19 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import AudioPlayer from '../components/AudioPlayer.svelte';
+import { Icon } from 'astro-icon';
+
+import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
 
 interface Props {
 	title?: string;
-  transparentNav?: boolean;
 }
 
-const { title, transparentNav } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="2xl:text-[20px]">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />
@@ -20,12 +23,16 @@ const { title, transparentNav } = Astro.props;
     <ViewTransitions />
 		<title>{(title ? `${title} | ` : "") + "Candlestand Music"}</title>
 	</head>
-	<body class="font-serif overflow-x-hidden bg-gray-300">
-    <nav class:list={["fixed top-0 z-10 h-16 block w-full flex flex-wrap px-4 content-center justify-center text-white", {"backdrop-blur-lg": transparentNav}]}>
+	<body class="font-serif overflow-x-hidden bg-gray-300 bg-cover bg-fixed" style={{backgroundImage: `url(${blurredMercifulAndMighty.src})`}}>
+    <nav class="fixed top-0 z-10 h-16 2xl:h-20 w-full backdrop-blur-xl flex flex-wrap px-4 content-center justify-center text-white">
       <h2 class="text-2xl"><a href="/">Candlestand Music</a></h2>
       <ul class="flex items-center mx-auto sm:mr-0">
+        <AudioPlayer client:load>
+          <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
+          <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
+        </AudioPlayer>
         <li class="px-4"><a href="/about">About</a></li>
-        <li class="px-4">Contact</li>
+        <li class="px-4"><a href="/contact">Contact</a></li>
       </ul>
     </nav>
 		<slot />

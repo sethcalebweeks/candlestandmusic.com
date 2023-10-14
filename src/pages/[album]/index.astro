@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon';
+import PlaySong from '../../components/PlaySong.svelte';
 
-import { slide } from '../../scripts/slide.ts';
 import Layout from '../../layouts/Layout.astro';
 import albums from '../../albums.json';
 import restore from '../../images/restore.jpg';
@@ -37,12 +38,24 @@ const tracks = (await getCollection('tracks', ({id}) => {
 ---
 
 <Layout title={name}>
-	<main class="flex min-h-0 flex-col md:flex-row flex-1 pt-16 h-full overflow-auto">
+	<main class="flex min-h-0 flex-col md:flex-row flex-1 pt-16 2xl:pt-[5rem] h-full overflow-auto">
     <img src={cover.src} alt={name} class="object-contain flex-shrink" transition:name={cover.src} />
-    <ol class="block p-4 list-decimal flex-grow"> 
-      {tracks.map(({data: {title}, slug}, i) => (
-        <li class="mx-8 my-2 px-2" transition:animate={slide(i * 50 + 500)}><a href={slug}>{title}</a></li>
+    <ol class="block p-4 flex-grow sm:overflow-auto"> 
+      {tracks.map(({data: {title}, slug}) => (
+        <li class="my-2 p-2 track flex rounded text-white">
+          <PlaySong song={slug} client:load>
+            <Icon name="ic:baseline-play-arrow" class="h-6 w-6" />
+          </PlaySong>
+          <span class="flex-grow px-2">{title}</span>
+          <a href={slug} class="px-2">Lyrics</a>
+        </li>
       ))}
     </ol>
 	</main>
 </Layout>
+
+<style>
+  .track {
+    background-color: rgba(20, 20, 20, 0.7);
+  }
+</style>
