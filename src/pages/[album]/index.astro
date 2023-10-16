@@ -45,12 +45,12 @@ const tracks = (await getCollection('tracks', ({data: {album}}) => album === nam
     </div>
     <div class="p-4 flex-1 min-w-[24rem] w-full">
       <ol class="block"> 
-        {tracks.map(({data: {title}, slug}) => (
+        {tracks.map(({data: {title: song, album}, slug}) => (
           <li class="my-2 p-2 bg-black bg-opacity-50 flex rounded text-white">
-            <PlaySong song={slug} client:load>
+            <PlaySong {album} {song} client:load>
               <Icon name="ic:baseline-play-arrow" class="h-6 w-6" />
             </PlaySong>
-            <span class="flex-grow px-2">{title}</span>
+            <span class="flex-grow px-2">{song}</span>
             <a href={slug} class="px-2">Lyrics</a>
           </li>
         ))}

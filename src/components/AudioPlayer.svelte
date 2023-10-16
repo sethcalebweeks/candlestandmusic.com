@@ -2,13 +2,8 @@
 	import { onMount } from "svelte";
   import { currentSong } from '../scripts/audioStore';
 
-  export let albums = [];
-  export let tracks = [];
-
-  console.log(albums)
-  console.log(tracks)
-
-	let player;
+  export let albums = {};
+  let player;
   let nowPlaying = 'merciful&mighty/take-and-eat';
 	let isPlaying = false;
 

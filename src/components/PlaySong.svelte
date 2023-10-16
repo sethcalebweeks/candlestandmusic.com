@@ -1,11 +1,11 @@
 <script>
   import { currentSong } from "../scripts/audioStore";
 
-  export let song = "newsong";
+  export let album = "Merciful & Mighty";
+  export let song = "Westminster Confession of God";
 
   function playSong() {
-    console.log(song);
-    currentSong.set(song);
+    currentSong.set([album, song]);
   }
 </script>
 

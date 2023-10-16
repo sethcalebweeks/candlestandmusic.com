@@ -1,3 +1,3 @@
 import { writable } from 'svelte/store';
 
-export const currentSong = writable("nothing");
+export const currentSong = writable(["Merciful & Mighty", "Westminster Confession of God"]);

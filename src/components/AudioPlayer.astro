@@ -5,28 +5,17 @@ import { Icon } from 'astro-icon';
 
 import albumsJSON from '../albums.json';
 
-const albums = albumsJSON.map(async ({name}) => ({
-  [name]: (await getCollection('tracks', ({data: {album}}) => album === name))
-    .map(({slug, ...rest}) => ({
-      ...rest,
-      slug: `/${slug.replace("_and_", "&")}.mp3`
-    }))
-}))
+const tracks = (await getCollection('tracks'))
+  .map(({slug, data}) => ({
+    ...data,
+    mp3: `/${slug.replace("_and_", "&")}.mp3`
+  }))
 
-// const name = "Restore";
+const albums = albumsJSON.reduce((obj, {name}) => {
+  obj[name] = tracks.filter(({album}) => album === name)
+  return obj
+}, {} as any)
 
-// const tracks = (await getCollection('tracks', ({data: {album}}) => album === name))
-//   .map(({slug, ...rest}) => ({
-//     ...rest,
-//     slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
-//   }))
-
-
-// const tracks = (await getCollection('tracks'))
-//   .map(({slug, ...rest}) => ({
-//     ...rest,
-//     slug: `/${slug.replace("_and_", "&")}.mp3`
-//   }))
 
 ---
 
