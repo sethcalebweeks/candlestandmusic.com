@@ -3,23 +3,44 @@ import AudioPlayer from './AudioPlayer.svelte'
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon';
 
-import albumsJSON from '../albums.json';
+const albums = (await getCollection('tracks'))
+  .reduce((obj, {slug, data: {title, album}}) => {
+    obj[album] ??= {};
+    obj[album][title] = `/${slug.replace("_and_", "&")}.mp3`;
+    return obj;
+  }, {} as any)
 
-const tracks = (await getCollection('tracks'))
-  .map(({slug, data}) => ({
-    ...data,
-    mp3: `/${slug.replace("_and_", "&")}.mp3`
-  }))
+const player = document.getElementById("player");
 
-const albums = albumsJSON.reduce((obj, {name}) => {
-  obj[name] = tracks.filter(({album}) => album === name)
-  return obj
-}, {} as any)
+const state = (() => {
+  let _track
+  return {
+    v: {
+      get() { return _track; },
+      set(v) { _track = v },
+    }
+  }
+})()
 
-
+Object.defineProperties(player, {
+  album: {
+    get() { return this.album; },
+    set(album) { this.album = album },
+  },
+  track: {
+    get() { return this.track; },
+    set(track) {
+      this.track = track;
+      state.v = track
+    },
+  },
+});
 ---
 
-<AudioPlayer client:load {albums}>
+<span>{state.v}</span>
+<audio src="/music/noahsart/01_oh-give-thanks.mp3" id="player" transition:persist></audio>
+
+<!-- <AudioPlayer client:load {albums}>
   <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
   <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
-</AudioPlayer>
+</AudioPlayer> -->

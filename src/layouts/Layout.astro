@@ -1,7 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import AudioPlayer from '../components/AudioPlayer.svelte';
-import { Icon } from 'astro-icon';
+import Counter from '../components/Counter.svelte';
+import AudioPlayer from '../components/AudioPlayer.astro';
 
 import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
 
@@ -28,10 +28,8 @@ const { title } = Astro.props;
       <div class="h-full w-full m-auto max-w-6xl flex flex-wrap px-4 content-center text-white">
         <h2 class="text-2xl"><a href="/">Candlestand Music</a></h2>
         <div class="flex items-center mx-auto sm:mr-0">
-          <!-- <AudioPlayer client:load>
-            <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
-            <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
-          </AudioPlayer> -->
+          <!-- <AudioPlayer transition:persist="audio-player" />
+          <Counter transition:persist="counter" client:load /> -->
           <!-- <span class="marquee">
             Song long text to test out the marquee feature
           </span> -->

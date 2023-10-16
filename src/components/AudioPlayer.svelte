@@ -4,15 +4,24 @@
 
   export let albums = {};
   let player;
-  let nowPlaying = 'merciful&mighty/take-and-eat';
+  let trackName;
+  let albumName;
+  let src;
 	let isPlaying = false;
 
+  console.log(albums)
+
 	onMount(() => {
-		currentSong.subscribe((song) => {
-      nowPlaying = song;
-      player.load();
-      isPlaying = true;
-      player.play();
+		currentSong.subscribe(([album, song]) => {
+      if (trackName !== song) {
+        albumName = album;
+        trackName = song;
+        src = "/music/" + albums[album][song]
+        // trackSource = albums[album].find()
+        player.load();
+        isPlaying = true;
+        player.play();
+      }
     });
 	});
 
@@ -22,8 +31,8 @@
 	};
 </script>
 
-<audio bind:this={player} loop>
-	<source src={`/music/merciful&mighty/westminster-confession-of-god.m4a`} type="audio/mp4" />
+<audio bind:this={player} data-astro-transition-persist="player">
+	<source {src} type="audio/mp4" />
 </audio>
 
 <p>{$currentSong}</p>

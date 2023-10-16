@@ -5,6 +5,9 @@
   export let song = "Westminster Confession of God";
 
   function playSong() {
+    const player = document.getElementById("player");
+    player.album = album;
+    player.track = song;
     currentSong.set([album, song]);
   }
 </script>
