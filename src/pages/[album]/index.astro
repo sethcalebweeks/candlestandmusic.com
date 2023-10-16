@@ -30,9 +30,8 @@ export function getStaticPaths() {
 
 const { slug, name, cover, ...rest } = Astro.props;
 
-const tracks = (await getCollection('tracks', ({id}) => {
-    return id.startsWith(slug.replace("&", "_and_"))
-  })).map(({slug, ...rest}) => ({
+const tracks = (await getCollection('tracks', ({data: {album}}) => album === name))
+  .map(({slug, ...rest}) => ({
     ...rest,
     slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
   }))

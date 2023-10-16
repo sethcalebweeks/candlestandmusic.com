@@ -1,0 +1,36 @@
+---
+import AudioPlayer from './AudioPlayer.svelte'
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon';
+
+import albumsJSON from '../albums.json';
+
+const albums = albumsJSON.map(async ({name}) => ({
+  [name]: (await getCollection('tracks', ({data: {album}}) => album === name))
+    .map(({slug, ...rest}) => ({
+      ...rest,
+      slug: `/${slug.replace("_and_", "&")}.mp3`
+    }))
+}))
+
+// const name = "Restore";
+
+// const tracks = (await getCollection('tracks', ({data: {album}}) => album === name))
+//   .map(({slug, ...rest}) => ({
+//     ...rest,
+//     slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
+//   }))
+
+
+// const tracks = (await getCollection('tracks'))
+//   .map(({slug, ...rest}) => ({
+//     ...rest,
+//     slug: `/${slug.replace("_and_", "&")}.mp3`
+//   }))
+
+---
+
+<AudioPlayer client:load {albums}>
+  <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
+  <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
+</AudioPlayer>

@@ -9,16 +9,21 @@ export async function getStaticPaths() {
       .replace(/\d{2}_/, "")
       .split("/")
 
-    return {params: { album, tracks }, props: { entry }}
+    return {params: { album, tracks }, props: { album, entry }}
   });
 }
 
-const { entry } = Astro.props;
+const { album, entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 <Layout>
-  <main class="prose max-w-4xl mx-auto pt-[6rem] 2xl:pt-[8rem]">
-    <h1>{entry.data.title}</h1>
-    <Content />
+  <main class="prose max-w-4xl mx-auto p-2 pt-[5rem] 2xl:pt-[7rem]">
+    <a href={`/${album}`} class="text-black drop-shadow-none">
+      Back to album
+    </a>
+    <div class="p-4 text-white text-center" style={{textShadow: "0.1em 0.1em 0.3rem black"}}>
+      <h1 class="text-white">{entry.data.title}</h1>
+      <Content />
+    </div>
   </main>
 </Layout>

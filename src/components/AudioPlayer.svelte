@@ -2,6 +2,12 @@
 	import { onMount } from "svelte";
   import { currentSong } from '../scripts/audioStore';
 
+  export let albums = [];
+  export let tracks = [];
+
+  console.log(albums)
+  console.log(tracks)
+
 	let player;
   let nowPlaying = 'merciful&mighty/take-and-eat';
 	let isPlaying = false;
@@ -9,9 +15,9 @@
 	onMount(() => {
 		currentSong.subscribe((song) => {
       nowPlaying = song;
-      player.load()
+      player.load();
       isPlaying = true;
-      player.play()
+      player.play();
     });
 	});
 
@@ -22,7 +28,7 @@
 </script>
 
 <audio bind:this={player} loop>
-	<source src={`/music${nowPlaying}.mp3`} type="audio/mp3" />
+	<source src={`/music/merciful&mighty/westminster-confession-of-god.m4a`} type="audio/mp4" />
 </audio>
 
 <p>{$currentSong}</p>

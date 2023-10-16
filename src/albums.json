@@ -5,7 +5,8 @@
     "spotify": "",
     "applemusic": "",
     "youtube": "",
-    "amazon": ""
+    "amazon": "",
+    "download": "/music/merciful&mighty.zip"
   },
   { 
     "slug": "restore",
@@ -13,7 +14,8 @@
     "spotify": "https://open.spotify.com/album/6Ht5Qngp5KFFwy9Oh9mtDI?si=agQfzkz7QCqT2LcNhV449A",
     "applemusic": "https://music.apple.com/us/album/restore/1503386252",
     "youtube": "https://youtu.be/Pt-2E5KS00U?list=PL1jeBBIC12Sb1vWnzDFmxYkk5Zz28XNZl",
-    "amazon": "https://amazon.com/music/player/albums/B08636STJN?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MsWbvbUu9jehafPj5NYyoUO6a"
+    "amazon": "https://amazon.com/music/player/albums/B08636STJN?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MsWbvbUu9jehafPj5NYyoUO6a",
+    "download": "/music/restore.zip"
   },
   {   
     "slug": "noahsart",
@@ -21,6 +23,7 @@
     "spotify": "https://open.spotify.com/album/4uUTX4E957v75mkKJW3cEB?si=mFemEctWTrmMyWUvj-0yCw",
     "applemusic": "https://music.apple.com/us/album/noahs-art/1255584391",
     "youtube": "https://youtu.be/N_bz34pPy7U?list=PL1jeBBIC12Sal5TYnK1yHv-EJDf17zOkU",
-    "amazon": "https://amazon.com/music/player/albums/B073Q6FZXT?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_jkH0XExM01KVtzspxgzNAK22j"
+    "amazon": "https://amazon.com/music/player/albums/B073Q6FZXT?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_jkH0XExM01KVtzspxgzNAK22j",
+    "download": "/music/noahsart.zip"
   }
 ]

@@ -9,34 +9,35 @@ import Links from '../components/Links.astro';
 import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 
 const ctaButtons = [
-  {icon: 'simple-icons:spotify', text: 'Listen on Spotify'},
-  {icon: 'simple-icons:applemusic', text: 'Listen on Apple Music'},
-  {icon: 'simple-icons:youtube', text: 'Listen on YouTube'},
-  {icon: 'simple-icons:amazon', text: 'Listen on Amazon Music'},
-]
+  {provider: 'spotify', icon: 'simple-icons:spotify', text: 'Listen on Spotify'},
+  {provider: 'applemusic', icon: 'simple-icons:applemusic', text: 'Listen on Apple Music'},
+  {provider: 'youtube', icon: 'simple-icons:youtube', text: 'Listen on YouTube'},
+  {provider: 'amazon', icon: 'simple-icons:amazon', text: 'Listen on Amazon Music'},
+  {provider: 'download', icon: 'ri:arrow-down-circle-fill', text: 'Download the album'},
+] as const
 
 const albumCovers: {[slug: string]: ImageMetadata} = {
   restore,
   noahsart,
 }
 
-const [_, ...pastAlbums] = albums;
+const [latest, ...pastAlbums] = albums;
 ---
 
 <Layout>
 	<main class="overflow-x-hidden">
     <div class="h-auto lg:h-[100vh] p-10 pt-[6rem] 2xl:pt-[8rem] flex flex-col lg:flex-row">
-      <a href="/merciful&mighty" class="flex flex-row items-center">
-        <img src={mercifulAndMighty.src} class="shadow-xl shadow-black hover:scale-[1.02] transition-all" style={{maxHeight: "min(40rem, 100%)"}} alt="Merciful & Mighty" /> <!-- transition:name={mercifulAndMighty.src} -->
+      <a href={`/${latest.slug}`} class="flex flex-row items-center">
+        <img src={mercifulAndMighty.src} class="shadow-xl shadow-black hover:scale-[1.02] transition-all" style={{maxHeight: "min(40rem, 100%)"}} alt={latest.name} />
       </a>
-      <div class="content-center sm:min-w-[28rem] text-white flex-1 flex flex-col justify-center items-center text-center">
-        <h2 class="text-2xl p-4 pt-8">Listen now to the latest album!</h2>
+      <div class="content-center sm:min-w-[32rem] text-white flex-1 flex flex-col justify-center items-center text-center">
+        <h2 class="text-3xl p-4 pt-8">Listen now to the latest album!</h2>
         <div class="inline-grid columns-1">
-          {ctaButtons.map(({icon, text}) => (
-            <button class="border-2 p-2 m-2 border-white inline-flex items-center justify-center hover:outline outline-2 outline-white">
+          {ctaButtons.map(({provider, icon, text}) => (
+            <a href={latest[provider]} class="border-2 p-2 m-2 border-white inline-flex items-center justify-center hover:outline outline-2 outline-white">
               <Icon name={icon} class="h-6 w-6 inline-block mr-2" />
               {text}
-            </button>
+            </a>
           ))}
         </div>
       </div>

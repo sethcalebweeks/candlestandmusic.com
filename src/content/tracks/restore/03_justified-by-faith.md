@@ -1,4 +1,4 @@
 ---
 title: Justified By Faith
+album: Restore
 ---
-Lyrics coming soon...
