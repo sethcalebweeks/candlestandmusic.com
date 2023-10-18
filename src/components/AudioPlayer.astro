@@ -5,42 +5,17 @@ import { Icon } from 'astro-icon';
 
 const albums = (await getCollection('tracks'))
   .reduce((obj, {slug, data: {title, album}}) => {
-    obj[album] ??= {};
-    obj[album][title] = `/${slug.replace("_and_", "&")}.mp3`;
+    obj[album] ??= [];
+    obj[album].push({
+      title,
+      src: `/music/${slug.replace("_and_", "&")}.mp3`
+    })
     return obj;
   }, {} as any)
 
-const player = document.getElementById("player");
-
-const state = (() => {
-  let _track
-  return {
-    v: {
-      get() { return _track; },
-      set(v) { _track = v },
-    }
-  }
-})()
-
-Object.defineProperties(player, {
-  album: {
-    get() { return this.album; },
-    set(album) { this.album = album },
-  },
-  track: {
-    get() { return this.track; },
-    set(track) {
-      this.track = track;
-      state.v = track
-    },
-  },
-});
 ---
 
-<span>{state.v}</span>
-<audio src="/music/noahsart/01_oh-give-thanks.mp3" id="player" transition:persist></audio>
-
-<!-- <AudioPlayer client:load {albums}>
+<AudioPlayer client:load {albums}>
   <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
   <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
-</AudioPlayer> -->
+</AudioPlayer>

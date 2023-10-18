@@ -24,15 +24,11 @@ const { title } = Astro.props;
 		<title>{(title ? `${title} | ` : "") + "Candlestand Music"}</title>
 	</head>
 	<body class="font-serif overflow-x-hidden bg-gray-300 bg-cover bg-fixed flex flex-col" style={{backgroundImage: `url(${blurredMercifulAndMighty.src})`}}>
-    <nav class="fixed top-0 z-10 h-16 2xl:h-20 w-full backdrop-blur-xl bg-black bg-opacity-50 flex flex-wrap justify-center">
-      <div class="h-full w-full m-auto max-w-6xl flex flex-wrap px-4 content-center text-white">
+    <nav class="fixed top-0 z-10 h-16 2xl:h-20 w-full backdrop-blur-xl bg-black bg-opacity-50 flex flex-wrap">
+      <div class="h-full w-full m-auto max-w-6xl flex flex-wrap px-4 content-center justify-center text-white">
         <h2 class="text-2xl"><a href="/">Candlestand Music</a></h2>
-        <div class="flex items-center mx-auto sm:mr-0">
-          <!-- <AudioPlayer transition:persist="audio-player" />
-          <Counter transition:persist="counter" client:load /> -->
-          <!-- <span class="marquee">
-            Song long text to test out the marquee feature
-          </span> -->
+        <div class="flex items-center mx-auto sm:mr-0" transition:persist="player">
+          <AudioPlayer />
         </div>
       </div>
     </nav>
