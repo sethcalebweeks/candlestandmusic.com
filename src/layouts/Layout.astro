@@ -1,8 +1,8 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
-import Counter from '../components/Counter.svelte';
 import AudioPlayer from '../components/AudioPlayer.astro';
 
+import mercifulAndMighty from '../images/merciful-&-mighty.jpg';
 import blurredMercifulAndMighty from '../images/blurred-merciful-and-mighty.jpeg';
 
 interface Props {
@@ -16,10 +16,13 @@ const { title } = Astro.props;
 <html lang="en" class="2xl:text-[20px]">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Listen to Merciful & Mighty!" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+    <meta property="og:title" content="Listen to Merciful & Mighty!" />
+    <meta property="og:url" content="https://candlestandmusic.com/" />
+    <meta property="og:image" content={mercifulAndMighty.src} />
     <ViewTransitions />
 		<title>{(title ? `${title} | ` : "") + "Candlestand Music"}</title>
 	</head>
