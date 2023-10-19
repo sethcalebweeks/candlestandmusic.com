@@ -6,7 +6,7 @@
     "applemusic": "https://music.apple.com/us/album/merciful-mighty/1706949075",
     "youtube": "https://youtu.be/9jHaxXOjnWY?list=PL1jeBBIC12SbhcJJjUiEjoBg_gM6Yy1o2",
     "amazon": "https://amazon.com/music/player/albums/B0CHTNP9G6?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_nYhy2Krs7Oavw5TLFLwOY2D22",
-    "download": "/music/merciful&mighty.zip"
+    "download": "https://media.githubusercontent.com/media/sethcalebweeks/candlestandmusic.com/main/public/music/merciful&mighty.zip"
   },
   { 
     "slug": "restore",
@@ -15,7 +15,7 @@
     "applemusic": "https://music.apple.com/us/album/restore/1503386252",
     "youtube": "https://youtu.be/Pt-2E5KS00U?list=PL1jeBBIC12Sb1vWnzDFmxYkk5Zz28XNZl",
     "amazon": "https://amazon.com/music/player/albums/B08636STJN?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_MsWbvbUu9jehafPj5NYyoUO6a",
-    "download": "/music/restore.zip"
+    "download": "https://media.githubusercontent.com/media/sethcalebweeks/candlestandmusic.com/main/public/music/restore.zip"
   },
   {   
     "slug": "noahsart",
@@ -24,6 +24,6 @@
     "applemusic": "https://music.apple.com/us/album/noahs-art/1255584391",
     "youtube": "https://youtu.be/N_bz34pPy7U?list=PL1jeBBIC12Sal5TYnK1yHv-EJDf17zOkU",
     "amazon": "https://amazon.com/music/player/albums/B073Q6FZXT?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_jkH0XExM01KVtzspxgzNAK22j",
-    "download": "/music/noahsart.zip"
+    "download": "https://media.githubusercontent.com/media/sethcalebweeks/candlestandmusic.com/main/public/music/noahsart.zip"
   }
 ]
