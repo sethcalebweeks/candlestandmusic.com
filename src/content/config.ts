@@ -13,6 +13,14 @@ const tracks = defineCollection({
   }),
 });
 
+const songs2025 = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string().optional(),
+  }),
+});
+
 export const collections = {
   'tracks': tracks,
+  '2025-songs': songs2025,
 };

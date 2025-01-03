@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  return (await getCollection('2025-songs')).map(entry => {
+    const song = entry.slug;
+    return {params: { song }, props: { entry }}
+  });
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<Layout>
+  <main class="prose max-w-4xl mx-auto p-2 pt-[5rem] 2xl:pt-[7rem]">
+    <a href="/2025-songs" class="text-black drop-shadow-none">
+      Back to 2025 songs
+    </a>
+    <div class="p-4 text-white text-center" style={{textShadow: "0.1em 0.1em 0.3rem black"}}>
+      <h1 class="text-white">{entry.data.title}</h1>
+      <Content />
+    </div>
+  </main>
+</Layout>

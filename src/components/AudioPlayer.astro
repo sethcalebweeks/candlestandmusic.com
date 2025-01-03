@@ -13,6 +13,10 @@ const albums = (await getCollection('tracks'))
     return obj;
   }, {} as any)
 
+const songs2025 = (await getCollection('2025-songs'))
+  .map(({slug, data: {title}}) => ({title, src: `/music/2025-songs/${slug}.mp3`}))
+
+albums['2025 Songs'] = songs2025;
 ---
 
 <AudioPlayer client:load {albums}>
