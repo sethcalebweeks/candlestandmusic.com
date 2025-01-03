@@ -1,0 +1,40 @@
+---
+// import { getCollection } from 'astro:content';
+// import { Icon } from 'astro-icon';
+// import PlaySong from '../../components/PlaySong.svelte';
+// import Links from '../../components/Links.astro';
+
+import Layout from '../../layouts/Layout.astro';
+
+interface Props {
+  slug: string;
+  name: string;
+  cover: ImageMetadata;
+}
+
+// export function getStaticPaths() {
+//   const albumCovers: {[slug: string]: ImageMetadata} = {
+//     "merciful&mighty": mercifulAndMighty,
+//     restore,
+//     noahsart,
+//   }
+//   return albums.map((album) => ({
+//     params: {album: album.slug},
+//     props: {cover: albumCovers[album.slug], ...album}
+//   }))
+// }
+
+const { slug, name, cover, ...rest } = Astro.props;
+
+// const tracks = (await getCollection('tracks', ({data: {album}}) => album === name))
+//   .map(({slug, ...rest}) => ({
+//     ...rest,
+//     slug: `/${slug.replace("_and_", "&").replace(/\d{2}_/, "")}`
+//   }))
+---
+
+<Layout title={name}>
+	<main class="flex min-h-0 flex-col md:flex-row pb-4 pt-16 2xl:pt-[5rem] h-full w-full">
+    Hello world!
+	</main>
+</Layout>
