@@ -1,6 +1,7 @@
-### Welcome to Candlestand+ ###
+Welcome to Candlestand+ 
+==============
 
-So I have this crazy idea to try writing/posting a ton of songs this year. (Like say 250???)
+So I have this crazy idea to try writing/posting a ton of songs for 2025. (Like say 250???)
 
 Thank you for being part of this journey! \
 Please bear with these songs as the recordings are not polished.\
