@@ -33,6 +33,17 @@ const { Content } = await entry.render();
         Download song
       </a>
       <Content />
+      <div class="hidden">
+        <form name={slug} method="POST" netlify>
+          <p>
+            <label>Name (optional): <input type="text" name="name" /></label>
+          </p>
+          <p>
+            <label>Comment: <textarea name="comment"></textarea></label>
+          </p>
+          <button type="submit">Add comment</button>
+        </form>
+      </div>
     </div>
   </main>
 </Layout>
