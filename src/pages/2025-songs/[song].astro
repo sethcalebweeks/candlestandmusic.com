@@ -22,7 +22,7 @@ const { Content } = await entry.render();
     </a>
     <div class="p-4 text-white text-center" style={{textShadow: "0.1em 0.1em 0.3rem black"}}>
       <h1 class="text-white">{song}</h1>
-      <div class="inline-block">
+      <div class="flex items-center justify-center">
         <PlaySong {album} {song} client:load>
           <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
           <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
