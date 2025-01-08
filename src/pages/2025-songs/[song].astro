@@ -15,7 +15,7 @@ const album = '2025 Songs';
 const { entry, song, slug } = Astro.props;
 const { Content } = await entry.render();
 ---
-<Layout>
+<Layout title={song} tagline={song}>
   <main class="prose max-w-4xl mx-auto p-2 pt-[5rem] 2xl:pt-[7rem]">
     <a href="/2025-songs" class="text-black drop-shadow-none">
       Back to 2025 songs
@@ -33,17 +33,6 @@ const { Content } = await entry.render();
         Download song
       </a>
       <Content />
-      <div class="hidden">
-        <form name={slug} method="POST" netlify>
-          <p>
-            <label>Name (optional): <input type="text" name="name" /></label>
-          </p>
-          <p>
-            <label>Comment: <textarea name="comment"></textarea></label>
-          </p>
-          <button type="submit">Add comment</button>
-        </form>
-      </div>
     </div>
   </main>
 </Layout>

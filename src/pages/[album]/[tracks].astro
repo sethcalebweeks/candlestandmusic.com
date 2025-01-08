@@ -16,7 +16,7 @@ export async function getStaticPaths() {
 const { album, entry } = Astro.props;
 const { Content } = await entry.render();
 ---
-<Layout>
+<Layout title={entry.data.title} tagline={entry.data.title}>
   <main class="prose max-w-4xl mx-auto p-2 pt-[5rem] 2xl:pt-[7rem]">
     <a href={`/${album}`} class="text-black drop-shadow-none">
       Back to album
