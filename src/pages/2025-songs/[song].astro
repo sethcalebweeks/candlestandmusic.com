@@ -1,42 +1,66 @@
 ---
-import { getCollection } from 'astro:content';
-import { Icon } from 'astro-icon';
-import PlaySong from '../../components/PlaySong.svelte';
-import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
+import PlaySong from "../../components/PlaySong.svelte";
+import Layout from "../../layouts/Layout.astro";
+import FeedbackForm from "../../components/FeedbackForm.astro";
 
 export async function getStaticPaths() {
-  return (await getCollection('2025-songs')).map(entry => {
-    const slug = entry.slug;
-    const song = entry.data.title;
-    return {params: { song: slug }, props: { entry, song, slug }}
-  });
+    return (await getCollection("2025-songs")).map((entry) => {
+        const slug = entry.slug;
+        const song = entry.data.title;
+        return { params: { song: slug }, props: { entry, song, slug } };
+    });
 }
-const album = '2025 Songs';
+const album = "2025 Songs";
 const { entry, song, slug } = Astro.props;
 const { Content } = await entry.render();
 ---
+
 <Layout title={song} tagline={song}>
-  <main class="prose max-w-4xl mx-auto pt-[5rem] 2xl:pt-[7rem]">
-    <div class="bg-black bg-opacity-50 rounded p-4 sm:p-6 m-2 sm:m-4 justify-center">
-      <a href="/2025-songs" class="text-white drop-shadow-none">
-        Back to 2025 songs
-      </a>
-      <div class="p-4 text-white text-center" style={{textShadow: "0.1em 0.1em 0.3rem black"}}>
-        <h1 class="text-white">{song}</h1>
-        <div class="flex items-center justify-center">
-          <PlaySong {album} {song} client:load>
-            <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
-            <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
-          </PlaySong>
+    <main class="prose max-w-4xl mx-auto pt-[5rem] 2xl:pt-[7rem]">
+        <div
+            class="bg-black bg-opacity-50 rounded p-4 sm:p-6 m-2 sm:m-4 justify-center"
+        >
+            <a href="/2025-songs" class="text-white drop-shadow-none">
+                Back to 2025 songs
+            </a>
+            <div
+                class="p-4 text-white text-center"
+                style={{ textShadow: "0.1em 0.1em 0.3rem black" }}
+            >
+                <h1 class="text-white">{song}</h1>
+                <div class="flex items-center justify-center">
+                    <PlaySong {album} {song} client:load>
+                        <Icon
+                            name="ic:baseline-play-circle"
+                            class="w-6 h-6"
+                            slot="play"
+                        />
+                        <Icon
+                            name="ic:baseline-pause-circle"
+                            class="w-6 h-6"
+                            slot="pause"
+                        />
+                    </PlaySong>
+                </div>
+                <a
+                    href={`https://github.com/sethcalebweeks/candlestandmusic.com/raw/refs/heads/main/public/music/2025-songs/${slug}.mp3`}
+                    class="border-2 p-2 m-2 border-white inline-flex items-center justify-center hover:outline outline-2 outline-white text-white no-underline"
+                >
+                    <Icon
+                        name="ri:arrow-down-circle-fill"
+                        class="h-6 w-6 inline-block mr-2"
+                    />
+                    Download song
+                </a>
+                <FeedbackForm song={song} />
+                <div
+                    class="prose prose-headings:text-white prose-strong:text-white text-white mx-auto"
+                >
+                    <Content />
+                </div>
+            </div>
         </div>
-        <a href={`https://github.com/sethcalebweeks/candlestandmusic.com/raw/refs/heads/main/public/music/2025-songs/${slug}.mp3`} class="border-2 p-2 m-2 border-white inline-flex items-center justify-center hover:outline outline-2 outline-white text-white no-underline">
-          <Icon name="ri:arrow-down-circle-fill" class="h-6 w-6 inline-block mr-2" />
-          Download song
-        </a>
-        <div class="prose prose-headings:text-white prose-strong:text-white text-white mx-auto">
-          <Content />
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
 </Layout>

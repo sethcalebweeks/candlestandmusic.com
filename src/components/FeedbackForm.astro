@@ -1,0 +1,41 @@
+---
+import StarRating from "./StarRating.svelte";
+const { song } = Astro.props;
+---
+
+<form id="feedbackForm" class="flex flex-col items-center my-4">
+    <StarRating name="entry.611881015" client:load />
+    <input type="hidden" value={song} name="entry.1131317675" />
+    <textarea
+        name="entry.1610386283"
+        class="p-4 bg-transparent w-96 resize-none border max-w-full"
+    ></textarea>
+    <input type="submit" value="Submit Feedback" class="border px-2 m-2" />
+</form>
+
+<script>
+    async function handleSubmit(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(event.target); // Get all form fields
+
+        try {
+            await fetch(
+                "https://docs.google.com/forms/u/0/d/e/1FAIpQLScnPCVe0k-nHcJMIzC57KWhTLMcrPiGV_09nbSlFY9eTSjBAw/formResponse",
+                {
+                    method: "POST",
+                    body: formData,
+                    mode: "no-cors", // Google Forms requires this
+                },
+            );
+
+            alert("Thanks for the feedback!");
+        } catch (error) {
+            alert("Error submitting form.");
+        }
+    }
+
+    document
+        .getElementById("feedbackForm")
+        ?.addEventListener("submit", handleSubmit);
+</script>
