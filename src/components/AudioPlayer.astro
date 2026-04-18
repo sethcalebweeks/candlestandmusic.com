@@ -24,7 +24,7 @@ const songs2025 = (await getCollection("2025-songs")).map(
 
 albums["2025 Songs"] = songs2025;
 
-const noahsWedding = (await getCollection("noahs-wedding")).map(
+const noahsWedding = ((await getCollection("noahs-wedding")) ?? []).map(
     ({ slug, data: { title } }) => ({
         title,
         src: `/music/noahs-wedding/${slug}.mp3`,
