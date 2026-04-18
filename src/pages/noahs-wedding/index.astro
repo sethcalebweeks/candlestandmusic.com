@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import { Icon } from 'astro-icon';
+import PlaySong from '../../components/PlaySong.svelte';
+import {Content as NoahsWeddingBlurb} from '../../content/blurbs/noahs-wedding.md';
+
+import Layout from '../../layouts/Layout.astro';
+
+const tracks = (await getCollection('noahs-wedding'))
+  .map(({data: {title}, slug}) => ({
+    song: title,
+    slug: `/noahs-wedding/${slug}`,
+    album: "Noah's Wedding"
+  }))
+---
+
+<Layout title="Noah's Wedding" tagline="Noah's Wedding">
+	<main class="flex min-h-0 flex-col md:flex-row pb-4 pt-16 2xl:pt-[5rem] h-full w-full">
+    <div class="prose p-4 sm:p-6 bg-black bg-opacity-50 rounded flex flex-col flex-1 align-middle max-h-[70vh] items-center self-center text-white prose-headings:text-white m-2 sm:m-4">
+      <NoahsWeddingBlurb />
+    </div>
+    <div class="p-4 flex-1 min-w-[24rem] w-full">
+      <ol class="block">
+        {tracks.map(({song, album, slug}) => (
+          <li class="my-2 p-2 bg-black bg-opacity-50 flex rounded text-white">
+            <PlaySong {album} {song} client:load>
+              <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
+              <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
+            </PlaySong>
+            <span class="flex-grow px-2">{song}</span>
+            <a href={slug} class="px-2">Lyrics</a>
+          </li>
+        ))}
+      </ol>
+    </div>
+	</main>
+</Layout>

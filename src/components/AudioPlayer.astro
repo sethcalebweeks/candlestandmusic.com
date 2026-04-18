@@ -1,25 +1,40 @@
 ---
-import AudioPlayer from './AudioPlayer.svelte'
-import { getCollection } from 'astro:content';
-import { Icon } from 'astro-icon';
+import AudioPlayer from "./AudioPlayer.svelte";
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon";
 
-const albums = (await getCollection('tracks'))
-  .reduce((obj, {slug, data: {title, album}}) => {
-    obj[album] ??= [];
-    obj[album].push({
-      title,
-      src: `/music/${slug.replace("_and_", "&")}.mp3`
-    })
-    return obj;
-  }, {} as any)
+const albums = (await getCollection("tracks")).reduce(
+    (obj, { slug, data: { title, album } }) => {
+        obj[album] ??= [];
+        obj[album].push({
+            title,
+            src: `/music/${slug.replace("_and_", "&")}.mp3`,
+        });
+        return obj;
+    },
+    {} as any,
+);
 
-const songs2025 = (await getCollection('2025-songs'))
-  .map(({slug, data: {title}}) => ({title, src: `/music/2025-songs/${slug}.mp3`}))
+const songs2025 = (await getCollection("2025-songs")).map(
+    ({ slug, data: { title } }) => ({
+        title,
+        src: `/music/2025-songs/${slug}.mp3`,
+    }),
+);
 
-albums['2025 Songs'] = songs2025;
+albums["2025 Songs"] = songs2025;
+
+const noahsWedding = (await getCollection("noahs-wedding")).map(
+    ({ slug, data: { title } }) => ({
+        title,
+        src: `/music/noahs-wedding/${slug}.mp3`,
+    }),
+);
+
+albums["Noah's Wedding"] = noahsWedding;
 ---
 
 <AudioPlayer client:load {albums}>
-  <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
-  <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
+    <Icon name="ic:baseline-play-circle" class="w-6 h-6" slot="play" />
+    <Icon name="ic:baseline-pause-circle" class="w-6 h-6" slot="pause" />
 </AudioPlayer>

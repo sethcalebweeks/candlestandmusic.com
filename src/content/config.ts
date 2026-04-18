@@ -1,12 +1,12 @@
-import { z, defineCollection } from 'astro:content';
-import albums from '../albums.json';
+import { z, defineCollection } from "astro:content";
+import albums from "../albums.json";
 
-type NonEmptyArray<T> = [T, ...T[]]
+type NonEmptyArray<T> = [T, ...T[]];
 
-const albumTitles = albums.map(album => album.name) as NonEmptyArray<string>;
+const albumTitles = albums.map((album) => album.name) as NonEmptyArray<string>;
 
 const tracks = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
     album: z.enum(albumTitles),
@@ -14,13 +14,21 @@ const tracks = defineCollection({
 });
 
 const songs2025 = defineCollection({
-  type: 'content',
+  type: "content",
+  schema: z.object({
+    title: z.string().optional(),
+  }),
+});
+
+const noahsWedding = defineCollection({
+  type: "content",
   schema: z.object({
     title: z.string().optional(),
   }),
 });
 
 export const collections = {
-  'tracks': tracks,
-  '2025-songs': songs2025,
+  tracks: tracks,
+  "2025-songs": songs2025,
+  "noahs-wedding": noahsWedding,
 };
