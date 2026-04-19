@@ -6,7 +6,7 @@ import Layout from "../../layouts/Layout.astro";
 import FeedbackForm from "../../components/FeedbackForm.astro";
 
 export async function getStaticPaths() {
-    return (await getCollection("noahs-wedding")).map((entry) => {
+    return ((await getCollection("noahs-wedding")) ?? []).map((entry) => {
         const slug = entry.slug;
         const song = entry.data.title;
         return { params: { song: slug }, props: { entry, song, slug } };
