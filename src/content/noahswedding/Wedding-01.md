@@ -1,5 +1,5 @@
 ---
-title: 01 Trust the One Who's Faithful
+title: Wedding-01 Song of Trust
 ---
 
 The tune on this one has become one of my favorites. I wake up to it in the morning.
