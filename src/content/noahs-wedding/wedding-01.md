@@ -1,5 +1,5 @@
 ---
-title: Wedding-01 Song of Trust
+title: Wedding-01 Trust
 ---
 
 The tune on this one has become one of my favorites. I wake up to it in the morning.
