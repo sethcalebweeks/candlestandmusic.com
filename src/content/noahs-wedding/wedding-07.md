@@ -1,5 +1,5 @@
 ---
-title: Wedding-07 Sovereignty
+title: Wedding-07 Sovereign
 ---
 
 Lord willing, there will be someone at the wedding who will really be touched if you play this one.
