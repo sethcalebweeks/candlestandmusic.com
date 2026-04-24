@@ -1,5 +1,5 @@
 ---
-title: Wedding-06 Unencumbered
+title: Wedding-06 Cast
 ---
 
 This could easily be embellished and probably shortened.
